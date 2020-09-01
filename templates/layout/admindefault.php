@@ -38,12 +38,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>My</span>Blog</a>
+            <a href="<?= $this->Url->build('/') ?>"><span>MyBlog - CMS</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="/posts">記事一覧</a>
-            <a target="_blank" rel="noopener" href="/tags">タグ一覧</a>
-            <a target="_blank" rel="noopener" href="#">ログイン</a>
+            <a target="_blank" rel="noopener" href="/admin/posts">記事一覧</a>
+            <a target="_blank" rel="noopener" href="/admin/tags">タグ一覧</a>
+            <a target="_blank" rel="noopener" href="/admin/users">ユーザ一覧</a>
+            <a target="_blank" rel="noopener" href="#">ログアウト</a>
         </div>
     </nav>
     <main class="main">
