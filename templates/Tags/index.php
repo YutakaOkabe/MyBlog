@@ -21,10 +21,9 @@
         <?php foreach ($tags as $tag) : ?>
           <tr>
             <td><?= $this->Html->link($tag->title, ['action' => 'view', $tag->id])
-             ?></td>
+                ?></td>
             <td><?= count($tag->posts) ?></td>
-            <td><?= dd($tag->posts[0]->title) ?></td>
-            <td><?= h($recentPost->title) ?></td>
+            <td><?= h($tag->posts[0]->title) ?></td>
 
           </tr>
         <?php endforeach; ?>

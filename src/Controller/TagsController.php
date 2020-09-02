@@ -20,14 +20,14 @@ class TagsController extends AppController
     {
         $this->loadModel('Posts');
 
-        $tags = $this->Tags->find()->contain(['Posts']);
+        $tags = $this->Tags->find()->contain([
+            'Posts' => [
+                'sort' => [ 'Posts.created' => 'DESC' ]
+            ]]);
         $tags = $this->paginate($tags);
 
-        $recentPost = $this->Posts->find()->contain(['Tags'])
-        ->order(['created' => 'desc'])->first();
+        $this->set(compact(['tags']));
 
-
-        $this->set(compact(['tags', 'recentPost']));
     }
 
     /**
