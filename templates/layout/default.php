@@ -41,9 +41,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/') ?>"><span>My</span>Blog</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="/posts">記事一覧</a>
-            <a target="_blank" rel="noopener" href="/tags">タグ一覧</a>
-            <a target="_blank" rel="noopener" href="#">ログイン</a>
+            <a href="/posts">記事一覧</a>
+            <a href="/tags">タグ一覧</a>
+            <?php if (is_null($this->request->getAttribute('identity'))) : ?>
+                <a href="/admin/users/login">ログイン</a>
+            <?php else:?>
+                <a href="/admin/users/logout">ログアウト</a>
+            <?php endif; ?>
+            
         </div>
     </nav>
     <main class="main">
