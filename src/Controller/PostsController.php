@@ -24,7 +24,7 @@ class PostsController extends AppController
      */
     public function index()
     {
-        $posts = $this->paginate($this->Posts->find()->contain(['Tags']));
+        $posts = $this->paginate($this->Posts->find()->order(['created' => 'desc'])->contain(['Tags']));
 
         $this->set(compact('posts'));
     }
