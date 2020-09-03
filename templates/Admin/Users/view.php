@@ -17,7 +17,7 @@
     <div class="column-responsive column-80">
         <div class="users view content">
             <h3><?= h($user->id) ?></h3>
-            <table>
+            <table class="table-auto">
                 <tr>
                     <th><?= __('Username') ?></th>
                     <td><?= h($user->username) ?></td>

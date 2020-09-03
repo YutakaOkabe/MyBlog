@@ -43,12 +43,19 @@ th a,
     color:#2f85ae;
 }
 
+
 /* Utility */
 .table-responsive {
     display: block;
     width: 100%;
+    /* ボックスに収まらない内容はブラウザーの設定に依存して表示（通常はスクロールバー） */
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.table-auto {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Main */
@@ -68,8 +75,11 @@ body {
     padding: 0 0.4rem;
 }
 th {
+    /* テキストの半角スペース、タブ、改行を全て1つの空白文字にする（行は折り返されない） */
     white-space: nowrap;
 }
+
+
 
 /* Nav bar */
 .top-nav {
@@ -100,10 +110,20 @@ th {
     padding: 0.5rem 0;
 }
 
+
+.loginuser {
+    margin-bottom: 2.0rem;
+}
+
+
 /* View action */
 .view.content .text {
     margin-top: 1.2rem;
 }
+.view.content td {
+    overflow-wrap: break-word;
+}
+
 .related {
     margin-top: 2rem;
 }
@@ -157,6 +177,17 @@ th {
 .input.radio label:first-of-type {
     margin-bottom: 2.0rem;
 }
+
+.input.select .checkbox{
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+.input.select .checkbox label {
+    font-size: 1.7rem;
+    font-weight: normal;
+}
+
+
 
 /* Paginator */
 .paginator {
