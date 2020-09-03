@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AdminController;
 
 /**
  * Tags Controller
@@ -11,8 +11,14 @@ use App\Controller\AppController;
  * @property \App\Model\Table\TagsTable $Tags
  * @method \App\Model\Entity\Tag[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class TagsController extends AppController
+class TagsController extends AdminController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->viewBuilder()->setLayout('admindefault');
+    }
+
     /**
      * Index method
      *

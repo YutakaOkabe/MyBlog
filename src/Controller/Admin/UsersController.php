@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AdminController;
+
 
 /**
  * Users Controller
@@ -11,8 +13,52 @@ use App\Controller\AppController;
  * @property \App\Model\Table\UsersTable $Users
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class UsersController extends AppController
+class UsersController extends AdminController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->viewBuilder()->setLayout('admindefault');
+    }
+
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // 認証を必要としないログインアクションを構成し、
+        // 無限リダイレクトループの問題を防ぎます
+        $this->Authentication->addUnauthenticatedActions(['login']);
+    }
+
+    public function login()
+    {
+        $this->request->allowMethod(['get', 'post']);
+        $result = $this->Authentication->getResult();
+        // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
+        if ($result->isValid()) {
+            // redirect to /articles after login success
+            $redirect = $this->request->getQuery('redirect', [
+                'controller' => 'Posts',
+                'action' => 'index',
+            ]);
+
+            return $this->redirect($redirect);
+        }
+        // ユーザーが submit 後、認証失敗した場合は、エラーを表示します
+        if ($this->request->is('post') && !$result->isValid()) {
+            $this->Flash->error(__('Invalid username or password'));
+        }
+    }
+
+    public function logout()
+    {
+        $result = $this->Authentication->getResult();
+        // POSTやGETに関係なく、ユーザーがログインしていればリダイレクトします
+        if ($result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'Posts', 'action' => 'index']);
+        }
+    }
+
     /**
      * Index method
      *
