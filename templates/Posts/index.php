@@ -13,6 +13,7 @@
 				<tr>
 					<th><?= $this->Paginator->sort('title') ?></th>
 					<th><?= $this->Paginator->sort('tags') ?></th>
+					<th><?= $this->Paginator->sort('body') ?></th>
 					<th><?= $this->Paginator->sort('created') ?></th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 									<?= $this->Html->link($tag->title, ['controller' => 'Tags', 'action' => 'view', $tag->id]) ?>
 								<?php endforeach; ?>
 							</td>
+							<td><?= mb_strimwidth( h($post->body), 0, 20, '…', 'UTF-8' ); ?></td>
 							<td><?= h($post->created) ?></td>
 						</tr>
 					<?php endif; ?>
