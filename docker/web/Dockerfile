@@ -1,13 +1,18 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 RUN set -ex apk --no-cache add postgresql-dev libpq-dev && \
-    apt-get update && apt-get install -y libpq-dev \
-    libicu-dev \
-    vim zip\
+    apt-get update && apt-get install -y\
+    vim zip unzip\
     less \
-    && docker-php-ext-install pdo pdo_pgsql pgsql mbstring intl
+    git ssl-cert rsyslog cron \
+    libzip-dev libicu-dev libpq-dev \
+    libonig-dev libfreetype6-dev libjpeg-dev libjpeg62-turbo-dev libpng-dev \
+    && docker-php-ext-install pdo pdo_pgsql pgsql mbstring intl gd \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY php.ini /usr/local/etc/php/
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/webroot
 
