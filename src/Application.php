@@ -64,6 +64,11 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         }
 
         // Load more plugins here
+
+        // ファイルアップロード用
+        $this->addPlugin('Migrations');
+        // 追加
+        $this->addPlugin('ContentsFile', ['routes' => true]);
     }
 
     /**
