@@ -45,3 +45,7 @@ nbproject/*
 
 #docker
 /docker/db/.data
+
+
+#files
+/files
