@@ -100,7 +100,7 @@ class UsersTable extends Table
 				'last' => true,
 			])
 			->add('img', 'extension', [
-				'rule' => ['extension', ['jpg', 'jpeg', 'gif', 'png',]],
+				'rule' => ['extension', ['jpg', 'jpeg', 'gif', 'png', 'txt', 'pdf']],
 				'message' => '画像のみを添付して下さい',
 				'last' => true,
 			]);
