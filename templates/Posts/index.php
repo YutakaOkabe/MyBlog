@@ -15,6 +15,7 @@
 					<th><?= $this->Paginator->sort('tags') ?></th>
 					<th><?= $this->Paginator->sort('body') ?></th>
 					<th><?= $this->Paginator->sort('created') ?></th>
+					<th class="actions"><?= __('Actions') ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,6 +30,10 @@
 							</td>
 							<td><?= mb_strimwidth( h($post->body), 0, 20, '…', 'UTF-8' ); ?></td>
 							<td><?= h($post->created) ?></td>
+							<td class="actions">
+								<?= $this->Html->link(__('View'), ['action' => 'view', $post->id]) ?>
+								<?= $this->Html->link(__('Comment'), ['controller' => 'Comments', 'action' => 'add', $post->id]) ?>
+            </td>
 						</tr>
 					<?php endif; ?>
 				<?php endforeach; ?>

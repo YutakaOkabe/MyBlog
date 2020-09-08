@@ -39,7 +39,7 @@ class PostsController extends AppController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => ['Users', 'Tags'],
+            'contain' => ['Users', 'Tags', 'Comments'],
         ]);
 
         $this->set(compact('post'));

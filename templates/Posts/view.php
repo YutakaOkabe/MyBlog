@@ -48,7 +48,17 @@
 				<blockquote>
 					<?= $this->Text->autoParagraph(h($post->body)); ?>
 				</blockquote>
+				<strong><?= __('Comments') ?></strong>
+				<blockquote>
+					<?php foreach ($post->comments as $comment) : ?>
+						<!-- <?= $this->Text->autoParagraph(h($comment->body) . '  by' . h($comment->user->username)) ?> -->
+						<?= $this->Text->autoParagraph(h($comment->body)) ?>
+					<?php endforeach; ?>
+				</blockquote>
 			</div>
+		</div>
+		<div class="text">
+
 		</div>
 	</div>
 </div>
