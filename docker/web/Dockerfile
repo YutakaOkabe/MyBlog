@@ -9,7 +9,7 @@ RUN set -ex apk --no-cache add postgresql-dev libpq-dev && \
     libonig-dev libfreetype6-dev libjpeg-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-install pdo pdo_pgsql pgsql mbstring intl gd \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-install -j$(nproc) gd exif
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY php.ini /usr/local/etc/php/
